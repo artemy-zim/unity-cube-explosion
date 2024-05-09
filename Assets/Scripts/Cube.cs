@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cube : MonoBehaviour, IClickable, ISpawnable
 {
     [SerializeField] private Spawner _spawner;
-    [SerializeField] private SpawnExplosion _explosion;
+    [SerializeField] private Explosion _explosion;
     [SerializeField] private float _splitChance;
 
     public void OnClick()

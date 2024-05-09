@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < Random.Range(_minAmount, _maxAmountExclusive); i++)
         {
-            Cube newCube = Instantiate(cube);
+            ISpawnable newCube = Instantiate(cube);
             newCube.OnSpawn();
         }
     }
