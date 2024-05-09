@@ -11,15 +11,12 @@ public class Spawner : MonoBehaviour
             _minAmount = _maxAmountExclusive - 1;
     }
 
-    public void TrySpawn(GameObject gameObject)
+    public void TrySpawn(Cube cube)
     {
-        if (gameObject.TryGetComponent(out ISpawnable spawnable))
+        for (int i = 0; i < Random.Range(_minAmount, _maxAmountExclusive); i++)
         {
-            for (int i = 0; i < Random.Range(_minAmount, _maxAmountExclusive); i++)
-            {
-                GameObject newGameObject = Instantiate(gameObject);
-                newGameObject.GetComponent<ISpawnable>().OnSpawn();
-            }
+            Cube newCube = Instantiate(cube);
+            newCube.OnSpawn();
         }
     }
 }

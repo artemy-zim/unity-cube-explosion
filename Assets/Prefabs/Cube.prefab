@@ -147,7 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfad683d212b7d428c625fc1ed2ba19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawner: {fileID: 0}
+  _spawner: {fileID: 4366396242564138144, guid: 1f634a96bc70cef40a000c514ee75382, type: 3}
+  _explosion: {fileID: 2606430744579561848}
+  _splitChance: 100
 --- !u!114 &2606430744579561848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4671355f46a72743b4daca2f71584c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 15000
-  _radius: 500
-  _upwardsModifier: 200
+  _force: 750
+  _radius: 150
+  _upwardsModifier: 100

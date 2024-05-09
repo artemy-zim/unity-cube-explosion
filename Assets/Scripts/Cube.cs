@@ -5,13 +5,13 @@ using UnityEngine;
 public class Cube : MonoBehaviour, IClickable, ISpawnable
 {
     [SerializeField] private Spawner _spawner;
-
-    private float _splitChance = 100f;
+    [SerializeField] private SpawnExplosion _explosion;
+    [SerializeField] private float _splitChance;
 
     public void OnClick()
     {
         if (CanSplit())
-            _spawner.TrySpawn(gameObject);
+            _spawner.TrySpawn(this);
 
         Destroy(gameObject);
     }
@@ -21,8 +21,9 @@ public class Cube : MonoBehaviour, IClickable, ISpawnable
         int scaleReducer = 2;
 
         transform.localScale /= scaleReducer;
-        transform.GetComponent<Renderer>().material.color = Random.ColorHSV();
-        transform.GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Renderer>().material.color = Random.ColorHSV();
+
+        _explosion.DoExplosion();
     }
 
     private bool CanSplit()
