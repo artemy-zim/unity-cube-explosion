@@ -13,9 +13,8 @@ public class ObjectClicker : MonoBehaviour
     private void HandleObjectClick()
     {
         Ray _ray = _camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (Physics.Raycast(_ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(_ray, out RaycastHit hit, Mathf.Infinity))
         {
             if (hit.transform.TryGetComponent(out IClickable clickable))
                 clickable.OnClick();

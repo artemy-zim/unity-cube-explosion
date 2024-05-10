@@ -39,7 +39,6 @@ public class Explosion : MonoBehaviour
                 if(explosion != this) 
                     explosion.DoExplosionForce(transform.position, transform.localScale.magnitude);
             }
-
         }
     }
 }
