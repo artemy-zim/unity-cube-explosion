@@ -12,6 +12,8 @@ public class Cube : MonoBehaviour, IClickable, ISpawnable
     {
         if (CanSplit())
             _spawner.TrySpawn(this);
+        else
+            _explosion.Explode();
 
         Destroy(gameObject);
     }
@@ -23,12 +25,12 @@ public class Cube : MonoBehaviour, IClickable, ISpawnable
         transform.localScale /= scaleReducer;
         GetComponent<Renderer>().material.color = Random.ColorHSV();
 
-        _explosion.DoExplosion();
+        _explosion.DoExplosionForce();
     }
 
     private bool CanSplit()
     {
-        float maxPercentage = 101f;
+        float maxPercentage = 100f;
         int chanceReducer = 2;
 
         if(Random.Range(0, maxPercentage) <= _splitChance)

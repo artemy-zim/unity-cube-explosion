@@ -5,7 +5,6 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] private float _force;
     [SerializeField] private float _radius;
-    [SerializeField] private float _upwardsModifier;
 
     private Rigidbody _rigidbody;
 
@@ -14,8 +13,33 @@ public class Explosion : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void DoExplosion()
+    public void DoExplosionForce()
     {
-        _rigidbody.AddExplosionForce(_force, transform.position, _radius, _upwardsModifier);
+        _rigidbody.AddExplosionForce(_force, transform.position, _radius);
+    }
+
+    private void DoExplosionForce(Vector3 explosionPosition, float scale) 
+    {
+        float distance = (explosionPosition - transform.position).magnitude;
+
+        float force = _force / distance / scale;
+        float radius = _radius / scale;
+
+        _rigidbody.AddExplosionForce(force, explosionPosition, radius);
+    }
+
+    public void Explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
+
+        foreach(Collider collider in colliders) 
+        {
+            if(collider.TryGetComponent(out Explosion explosion))
+            {
+                if(explosion != this) 
+                    explosion.DoExplosionForce(transform.position, transform.localScale.magnitude);
+            }
+
+        }
     }
 }
